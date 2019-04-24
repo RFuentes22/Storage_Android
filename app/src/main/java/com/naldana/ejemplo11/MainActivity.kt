@@ -81,50 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bt_write_external.setOnClickListener {
-            /* var sdDisponible = false
-             var sdAccesoEscritura = false
-
-             //Comprobamos el estado de la memoria externa (tarjeta SD)
-             val estado = Environment.getExternalStorageState()
-
-             if (estado == Environment.MEDIA_MOUNTED) {
-                 sdDisponible = true
-                 sdAccesoEscritura = true
-             } else if (estado == Environment.MEDIA_MOUNTED_READ_ONLY) {
-                 sdDisponible = true
-                 sdAccesoEscritura = false
-             } else {
-                 sdDisponible = false
-                 sdAccesoEscritura = false
-             }
-
-             Log.d("Estado","sdDisponible: " + sdDisponible + "sdAccesoEscritura: " + sdAccesoEscritura )
-
-
-             val filename = "email_sd.txt"
-             val fileContent = "email: $email"
-
-
-             if(sdDisponible && sdAccesoEscritura) {
-                 try {
-                     val ruta_sd = Environment.getExternalStorageDirectory()
-
-                     val f = File(ruta_sd.absolutePath, filename)
-
-                     val fout = OutputStreamWriter(
-                         FileOutputStream(f)
-                     )
-
-                     fout.write(fileContent)
-                     println(fileContent)
-                     fout.close()
-                 } catch (ex: Exception) {
-                     Log.e("Ficheros", "Error al escribir fichero a tarjeta SD")
-                 }
-             }
-             else {
-                 setupPermissions()
-             }*/
+        
 
             val filename = "email_sd.txt"
             val fileContent = "email: $email"
@@ -151,27 +108,18 @@ class MainActivity : AppCompatActivity() {
             val filename = "email_sd.txt"
 
             if (isExternalStorageReadable()) {
-                val sb = StringBuilder()
+               
                 try {
                     val textFile = File(Environment.getExternalStorageDirectory(), filename)
                     val fis = FileInputStream(textFile)
 
                     val isr = InputStreamReader(fis)
                     val buff = BufferedReader(isr)
-                    var line: String? = null
+                    var line: String?
                     line = buff.readLine()
                     Log.d("line",line.toString())
-                   /* if (fis != null) {
-                        val isr = InputStreamReader(fis)
-                        val buff = BufferedReader(isr)
 
-                        var line: String? = null
-                        while ((line == buff.readLine()) != null) {
-                            sb.append(line!! + "\n")
-                        }
-                        fis.close()
-                    }
-                    tv_data.text = sb*/
+                    tv_data.text = line
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
